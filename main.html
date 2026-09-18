@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>신세계 아키텍트팀 · Claude Code</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --ink: #17181c;
+    --ink-soft: #5b5d66;
+    --ink-faint: #93959e;
+    --accent: #6a52b3;
+    --line: rgba(23,24,28,0.12);
+    --font-display: 'Gowun Batang', 'IBM Plex Sans KR', serif;
+    --font-body: 'IBM Plex Sans KR', 'Malgun Gothic', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'D2Coding', Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-body);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(1100px 780px at 72% 30%, rgba(178, 150, 235, 0.55), transparent 58%),
+      radial-gradient(900px 680px at 92% 6%, rgba(110, 175, 235, 0.5), transparent 60%),
+      radial-gradient(760px 760px at 34% 66%, rgba(255, 255, 255, 0.95), transparent 68%),
+      #fbfbfc;
+  }
+
+  header.top {
+    display: flex;
+    align-items: center;
+    padding: 40px 48px 0;
+  }
+  header.top img { height: 24px; display: block; }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px 60px;
+  }
+
+  .quotes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 52px;
+    max-width: 760px;
+    text-align: center;
+  }
+
+  .quote-block .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+  }
+  .quote-block p {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+    line-height: 1.7;
+    margin: 0;
+    color: var(--ink);
+  }
+  .quote-block .accent { color: var(--accent); font-weight: 700; }
+  .quote-block + .quote-block { position: relative; padding-top: 52px; }
+  .quote-block + .quote-block::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 34px; height: 1px;
+    background: var(--line);
+  }
+
+  .actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 56px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.01em;
+    padding: 15px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 10px 24px -12px rgba(23, 24, 28, 0.55);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(23, 24, 28, 0.6); }
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--ink);
+    border: 1.5px solid var(--line);
+  }
+  .btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .btn .arrow { opacity: 0.6; }
+
+  footer.team {
+    padding: 0 48px 40px;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+  footer.team .k { color: var(--ink-faint); margin-right: 8px; }
+  footer.team .v { color: var(--ink); }
+
+  @media (max-width: 640px) {
+    header.top { padding: 28px 24px 0; }
+    main { padding: 24px 20px 40px; }
+    .quotes { gap: 40px; }
+    .actions { flex-direction: column; width: 100%; }
+    .btn { justify-content: center; }
+    footer.team { text-align: center; padding: 0 24px 32px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="top">
+    <a href="main.html" aria-label="main.html로 돌아가기">
+      <img src="shinsegae logo.png" alt="SHINSEGAE I&amp;C">
+    </a>
+  </header>
+
+  <main>
+    <div class="quotes">
+      <div class="quote-block">
+        <div class="eyebrow">01</div>
+        <p>깃허브 랭킹이나 유튜브만 봐도 AI기술이 격변하고 범람하는 시대,<br>
+        <span class="accent">오래 지속가능한 기술을 배우고 사용하는 혜안</span>을 기르자</p>
+      </div>
+      <div class="quote-block">
+        <div class="eyebrow">02</div>
+        <p>할루시네이션은 오류가 아닌 <span class="accent">현상이며 상상력</span>이다<br>
+        상상력이 빠진 AI는 <span class="accent">검색엔진</span>일 뿐이다</p>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="drp-db-config-framework.html">DRP-DB 형상관리 프레임워크 <span class="arrow">→</span></a>
+        <a class="btn btn-outline" href="claude-code-setup.html">클로드코드 환경구성 <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="team">
+    <div><span class="k">팀명 :</span><span class="v">신세계I&C 아키텍트팀(데상트)</span></div>
+    <div><span class="k">팀원 :</span><span class="v">이승일, 문상근, 남은영</span></div>
+  </footer>
+
+</body>
+</html>

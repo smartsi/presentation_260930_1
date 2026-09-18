@@ -11,9 +11,9 @@
     --ink-soft: #54636B;
     --ink-faint: #83919A;
     --line: #D3DCDE;
-    --accent: #0E6E6B;
-    --accent-soft: #DCEFEE;
-    --accent-ink: #06403F;
+    --accent: #6A52B3;
+    --accent-soft: #EFE9FB;
+    --accent-ink: #4A3880;
     --good: #2E7D46;
     --good-soft: #DFF0E2;
     --warn: #A66A0A;
@@ -39,9 +39,9 @@
       --ink-soft: #9FB0B2;
       --ink-faint: #6C7E80;
       --line: #263336;
-      --accent: #4FCFC4;
-      --accent-soft: #163331;
-      --accent-ink: #A8ECE4;
+      --accent: #B9A6F0;
+      --accent-soft: #2A2240;
+      --accent-ink: #DCC9FA;
       --good: #5FC088;
       --good-soft: #17281D;
       --warn: #E0A83E;
@@ -54,6 +54,7 @@
       --code-accent: #6FE3D8;
       --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 12px 30px -16px rgba(0,0,0,0.55);
     }
+    :root:not([data-theme="light"]) body { background-image: none; }
   }
   :root[data-theme="dark"] {
     --paper: #0D1518;
@@ -63,9 +64,9 @@
     --ink-soft: #9FB0B2;
     --ink-faint: #6C7E80;
     --line: #263336;
-    --accent: #4FCFC4;
-    --accent-soft: #163331;
-    --accent-ink: #A8ECE4;
+    --accent: #B9A6F0;
+    --accent-soft: #2A2240;
+    --accent-ink: #DCC9FA;
     --good: #5FC088;
     --good-soft: #17281D;
     --warn: #E0A83E;
@@ -78,11 +79,17 @@
     --code-accent: #6FE3D8;
     --shadow: 0 1px 2px rgba(0,0,0,0.35), 0 12px 30px -16px rgba(0,0,0,0.55);
   }
+  :root[data-theme="dark"] body { background-image: none; }
 
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(720px 520px at 16% 20%, rgba(178,150,235,0.32), transparent 70%),
+      radial-gradient(660px 500px at 88% 62%, rgba(110,175,235,0.26), transparent 70%);
+    background-repeat: repeat-y, repeat-y;
+    background-size: 100% 1400px, 100% 1400px;
     color: var(--ink);
     font-family: var(--font-body);
     line-height: 1.66;
@@ -285,9 +292,34 @@
     .part-divider { gap: 12px; }
     .step-head { gap: 10px; }
   }
+
+  .home-logo {
+    position: fixed; top: 20px; left: 24px; z-index: 50;
+    display: block; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 8px; padding: 8px 12px; box-shadow: var(--shadow);
+  }
+  .home-logo img { height: 18px; display: block; }
+
+  .back-to-top {
+    position: fixed; bottom: 24px; right: 24px; z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+    color: var(--ink-soft); text-decoration: none; font-size: 18px; line-height: 1;
+    opacity: 0; pointer-events: none; transform: translateY(6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  .back-to-top:hover { color: var(--accent-ink); border-color: var(--accent); }
 </style>
 
-<div class="page">
+<a class="home-logo" href="main.html" aria-label="main.html로 돌아가기">
+  <img src="shinsegae logo.png" alt="SHINSEGAE I&amp;C">
+</a>
+
+<a href="#top" class="back-to-top" id="backToTop" aria-label="맨 위로 이동">↑</a>
+
+<div class="page" id="top">
 
   <header class="hero">
     <div class="strata" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
@@ -344,7 +376,13 @@
       <li><a href="#s1-08"><span class="num">1.08</span>기동 확인</a></li>
       <li><a href="#s1-09"><span class="num">1.09</span>도커 설치 완료</a></li>
       <li><a href="#s1-10"><span class="num">1.10</span>접속 정보 &amp; DSNT 계정 생성</a></li>
-      <li><a href="#s1-11"><span class="num">1.11</span>트러블슈팅 모음</a></li>
+      <li><a href="#s1-11"><span class="num">1.11</span>스키마 복제 — Database Copy</a></li>
+      <li><a href="#s1-12"><span class="num">1.12</span>GET_DDL로 뷰·시노님 보완</a></li>
+      <li><a href="#s1-13"><span class="num">1.13</span>부계정 생성과 참조 권한</a></li>
+      <li><a href="#s1-14"><span class="num">1.14</span>재컴파일</a></li>
+      <li><a href="#s1-15"><span class="num">1.15</span>운영 vs 로컬 오브젝트 비교</a></li>
+      <li><a href="#s1-16"><span class="num">1.16</span>배포 리허설용 백업·복원</a></li>
+      <li><a href="#s1-17"><span class="num">1.17</span>트러블슈팅 모음</a></li>
     </ol>
     <div class="toc-part-title second">PART 02 · drp-db 형상관리 프레임워크</div>
     <ol>
@@ -358,7 +396,7 @@
       <li><a href="#s2-08"><span class="num">2.08</span>INVALID 오브젝트 점검</a></li>
       <li><a href="#s2-09"><span class="num">2.09</span>배포 중 락 대기</a></li>
       <li><a href="#s2-10"><span class="num">2.10</span>마이그레이션 실패 복구</a></li>
-      <li><a href="#s2-11"><span class="num">2.11</span>SP_SE% 프로시저 일괄 추출</a></li>
+      <li><a href="#s2-11"><span class="num">2.11</span>프로시저 일괄 추출</a></li>
       <li><a href="#s2-12"><span class="num">2.12</span>남은 과제</a></li>
     </ol>
   </nav>
@@ -474,6 +512,14 @@ docker version</code></pre>
         <span class="tag">비밀번호 정책</span>
         <p>Oracle 기본 정책: <strong>8자 이상 + 대문자 1개 이상 + 소문자 1개 이상 + 숫자 1개 이상</strong> 필수. 미충족 시 DB 생성 진행 중(10분 이상 경과 후) 실패 — 사전 확인 필요.</p>
       </div>
+      <div class="callout tip">
+        <span class="tag">캐릭터셋 확인</span>
+        <p><code class="inline">ORACLE_CHARACTERSET=AL32UTF8</code>는 예시 값. 운영 DB 캐릭터셋과 반드시 일치시켜야 함(생성 후 변경 어려움) — 운영에서 아래 쿼리로 미리 확인 후 값을 맞출 것.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · 운영 DB에서 확인</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>SELECT * FROM NLS_DATABASE_PARAMETERS WHERE PARAMETER = 'NLS_CHARACTERSET';</code></pre>
+      </div>
     </div>
   </section>
 
@@ -534,7 +580,145 @@ GRANT UNLIMITED TABLESPACE TO DSNT;</code></pre>
   </section>
 
   <section class="step" id="s1-11">
-    <div class="step-head"><span class="step-num">1.11</span><h2>트러블슈팅 모음</h2></div>
+    <div class="step-head"><span class="step-num">1.11</span><h2>스키마 복제 — Database Copy</h2></div>
+    <div class="step-body">
+      <p>DSNT가 참조하는 테이블·뷰·시퀀스 등을 로컬에도 만들어야 실제 프로시저 로직을 그대로 검증할 수 있음. 운영 계정에 Data Pump 디렉토리 권한이 없는 경우가 많아, SQL Developer의 <strong>Database Copy</strong> 기능으로 복제.</p>
+      <p class="sub">SQL Developer에서 운영·로컬 두 접속을 모두 열어둔 상태에서 <strong>Tools → Database Copy</strong> 실행 → Source(운영 DSNT) → Destination(로컬 DSNT) → 복사할 오브젝트 타입에 <code class="inline">TABLE</code>, <code class="inline">VIEW</code>, <code class="inline">SYNONYM</code>, <code class="inline">SEQUENCE</code>, <code class="inline">INDEX</code> 체크.</p>
+      <div class="callout warn">
+        <span class="tag">주의</span>
+        <p>Database Copy는 <strong>VIEW·SYNONYM을 자주 누락</strong>시킴. 복사 후 반드시 개수 비교해서 빠진 게 없는지 확인 (1.15절 참고).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="s1-12">
+    <div class="step-head"><span class="step-num">1.12</span><h2>GET_DDL로 뷰·시노님 보완</h2></div>
+    <div class="step-body">
+      <p>Database Copy가 빠뜨린 View·Synonym은 <code class="inline">DBMS_METADATA.GET_DDL</code>로 직접 추출해서 보완.</p>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · 운영 DB에서 실행</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>SELECT DBMS_METADATA.GET_DDL('VIEW', view_name, 'DSNT') AS ddl
+FROM all_views
+WHERE owner = 'DSNT'
+ORDER BY view_name;</code></pre>
+      </div>
+      <p class="sub">시노님은 <code class="inline">'SYNONYM'</code>, 혹시 패키지·타입까지 다룰 경우 <code class="inline">OBJECT_TYPE</code> 값 주의 — <code class="inline">PACKAGE BODY</code> → <code class="inline">'PACKAGE_BODY'</code>, <code class="inline">PACKAGE</code> → <code class="inline">'PACKAGE_SPEC'</code>, <code class="inline">TYPE</code> → <code class="inline">'TYPE_SPEC'</code>.</p>
+      <div class="callout warn">
+        <span class="tag">가장 많이 막히는 지점</span>
+        <p>SQL Developer 그리드 결과를 <strong>Ctrl+C로 복사하면 결과에 큰따옴표가 섞여 붙어서 실행이 안 됨</strong>. 그리드 Ctrl+C가 CSV 규칙에 따라 줄바꿈 있는 CLOB 값(GET_DDL 결과처럼 여러 줄인 텍스트)을 통째로 큰따옴표로 감싸버리기 때문. 애초에 그리드를 거치지 않고 <strong>SPOOL로 파일에 직접 출력</strong>하면 이 문제 자체가 안 생김.</p>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · F5(Run Script)로 실행</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>SET LONG 1000000
+SET LONGCHUNKSIZE 1000000
+SET PAGESIZE 0
+SET LINESIZE 32767
+SET TRIMSPOOL ON
+SET FEEDBACK OFF
+SET HEADING OFF
+SET ECHO OFF
+SET TERMOUT OFF
+
+SPOOL C:\temp\dsnt_views.sql
+
+SELECT DBMS_METADATA.GET_DDL('VIEW', view_name, 'DSNT') || ';'
+FROM all_views
+WHERE owner = 'DSNT'
+ORDER BY view_name;
+
+SPOOL OFF</code></pre>
+      </div>
+      <p class="sub">반드시 <strong>F5(Run Script)</strong>로 실행 — F9/그리드 조회로는 SPOOL이 작동 안 함. <code class="inline">|| ';'</code>로 세미콜론을 미리 붙여둬야 나중에 실행할 때 <code class="inline">ORA-00933</code> 에러 없이 바로 돌아감.</p>
+    </div>
+  </section>
+
+  <section class="step" id="s1-13">
+    <div class="step-head"><span class="step-num">1.13</span><h2>부계정 생성과 참조 권한</h2></div>
+    <div class="step-body">
+      <p>DSNT 프로시저가 같은 운영 DB 안의 다른 스키마(예: NPTNR·DAMO 같은 부계정)를 참조하는 경우, 로컬에도 그 계정을 똑같이 만들고 필요한 권한만 내주면 됨.</p>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · 부계정 생성 예시(NPTNR)</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>CREATE USER NPTNR IDENTIFIED BY &lt;NPTNR_비밀번호&gt;
+  DEFAULT TABLESPACE USERS
+  TEMPORARY TABLESPACE TEMP
+  QUOTA UNLIMITED ON USERS;
+
+GRANT CONNECT, RESOURCE TO NPTNR;</code></pre>
+      </div>
+      <p class="sub">DSNT가 실제로 참조하는 오브젝트만 골라서 권한 부여 (NPTNR 계정으로 접속해서 실행):</p>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · NPTNR 접속 상태에서 실행</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>GRANT SELECT ON TCM_USER_M TO DSNT;
+GRANT EXECUTE ON FN_CM_COMM_NM TO DSNT;</code></pre>
+      </div>
+      <div class="callout tip">
+        <span class="tag">TIP</span>
+        <p>개인 로컬 샌드박스면 권한 하나하나 내주는 대신 <code class="inline">GRANT DBA TO NPTNR;</code>로 간단히 처리해도 무방 (1.10절과 동일한 이유).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="s1-14">
+    <div class="step-head"><span class="step-num">1.14</span><h2>재컴파일</h2></div>
+    <div class="step-body">
+      <p>부계정을 나중에 추가하면 이미 만들어둔 DSNT 오브젝트가 INVALID 상태로 남아있을 수 있음 — <code class="inline">UTL_RECOMP</code>로 재컴파일. 참조 관계가 있는 스키마부터 순서대로.</p>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · 로컬 DB에서 실행</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>EXEC UTL_RECOMP.RECOMP_SERIAL('NPTNR');
+EXEC UTL_RECOMP.RECOMP_SERIAL('DSNT');</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="s1-15">
+    <div class="step-head"><span class="step-num">1.15</span><h2>운영 vs 로컬 오브젝트 비교</h2></div>
+    <div class="step-body">
+      <p>복제가 제대로 됐는지 확인하려면 운영·로컬에서 같은 쿼리를 각각 돌려서 결과를 대조.</p>
+      <div class="code-wrap">
+        <div class="code-label"><span>SQL · 운영·로컬 각각 실행</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>SELECT owner, object_type, status, COUNT(*) AS cnt
+FROM all_objects
+WHERE owner IN ('DSNT', 'NPTNR')
+GROUP BY owner, object_type, status
+ORDER BY owner, object_type, status;</code></pre>
+      </div>
+      <div class="callout warn">
+        <span class="tag">가장 많이 막히는 지점</span>
+        <p><code class="inline">ALL_OBJECTS</code>는 <strong>접속 계정이 볼 수 있는 오브젝트만</strong> 보여줌(본인 소유 + 권한 있는 것). DSNT 계정으로 조회하면 NPTNR 오브젝트가 안 보여서 비교가 왜곡될 수 있음 — <code class="inline">SYSTEM</code> 계정으로 조회하거나, 비교용으로만 <code class="inline">GRANT DBA TO DSNT;</code> 부여 후 <strong>재접속</strong>해서 조회 (롤 부여는 새 세션부터 적용).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="s1-16">
+    <div class="step-head"><span class="step-num">1.16</span><h2>배포 리허설용 백업·복원</h2></div>
+    <div class="step-body">
+      <p>배포 스크립트를 로컬에서 여러 번 반복 리허설하고 싶으면, 매번 컨테이너를 처음부터 다시 만들지 말고 <code class="inline">oracle-data</code> 볼륨만 스냅샷 떠뒀다가 복원하는 게 훨씬 빠름.</p>
+      <div class="code-wrap">
+        <div class="code-label"><span>PowerShell · 백업 (컨테이너 정지 후)</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>docker stop oracle19c
+
+docker run --rm -v oracle-data:/data -v ${PWD}:/backup busybox `
+  tar czf /backup/oracle_backup.tar.gz -C /data .
+
+docker start oracle19c</code></pre>
+      </div>
+      <div class="code-wrap">
+        <div class="code-label"><span>PowerShell · 복원</span><button class="copy-btn" type="button">복사</button></div>
+        <pre><code>docker stop oracle19c
+
+docker run --rm -v oracle-data:/data busybox sh -c "rm -rf /data/*"
+
+docker run --rm -v oracle-data:/data -v ${PWD}:/backup busybox `
+  tar xzf /backup/oracle_backup.tar.gz -C /data
+
+docker start oracle19c</code></pre>
+      </div>
+      <p class="sub">이 방식이면 컨테이너 재생성 없이 <strong>데이터만 원상복구</strong>되어, 배포 스크립트 리허설을 몇 번이고 반복해도 처음 세팅한 상태로 빠르게 되돌릴 수 있음.</p>
+    </div>
+  </section>
+
+  <section class="step" id="s1-17">
+    <div class="step-head"><span class="step-num">1.17</span><h2>트러블슈팅 모음</h2></div>
     <div class="step-body">
       <p class="sub">실제 발생 증상·해결 순서 그대로. 동일 메시지 발생 시 아래에서 확인.</p>
       <div class="tbl-wrap">
@@ -831,7 +1015,8 @@ ORDER BY sequence;</code></pre>
   <section class="step" id="s2-10">
     <div class="step-head"><span class="step-num">2.10</span><h2>마이그레이션 실패 복구</h2></div>
     <div class="step-body">
-      <p>R파일 실행 실패 시 Flyway가 <code class="inline">flyway_schema_history</code>에 실패 기록 — 이후 모든 실행 검증(validate) 단계에서 차단.</p>
+      <p>DRP-DB는 어플리케이션 기동시 flyway.repair() 수행</p>
+	  <p>R파일 실행 실패 시 Flyway가 <code class="inline">flyway_schema_history</code>에 실패 기록 — 이후 모든 실행 검증(validate) 단계에서 차단.</p>
       <ol>
         <li>문제 SQL 스크립트 수정</li>
         <li><code class="inline">--repair</code> 옵션 1회 실행 — 실패 이력 정리</li>
@@ -840,12 +1025,11 @@ ORDER BY sequence;</code></pre>
         <div class="code-label"><span>Bash</span><button class="copy-btn" type="button">복사</button></div>
         <pre><code>./gradlew bootRun --args='--spring.profiles.active=local --repair'</code></pre>
       </div>
-      <p class="sub">이후 <code class="inline">--repair</code> 없이 정상 재실행.</p>
     </div>
   </section>
 
   <section class="step" id="s2-11">
-    <div class="step-head"><span class="step-num">2.11</span><h2>SP_SE% 프로시저 일괄 추출</h2></div>
+    <div class="step-head"><span class="step-num">2.11</span><h2>프로시저 일괄 추출</h2></div>
     <div class="step-body">
       <p>기존 스키마 프로시저 R파일 온보딩 전, DB 내 <code class="inline">SP_SE%</code> 프로시저 소스 로컬 파일 추출 방법. <code class="inline">DBMS_METADATA.GET_DDL</code> + <code class="inline">SPOOL</code> 2단계 조합.</p>
 
@@ -923,7 +1107,7 @@ SPOOL OFF</code></pre>
   </div>
 
   <footer class="page-foot">
-    drp-db/README.md 및 로컬 구축 실측 기준 · DRP 팀 내부 공유용 · 2026-09 컨퍼런스 발표 자료
+    아키텍트팀 내부 공유용 · 2026-09 컨퍼런스 발표 자료
   </footer>
 
 </div>
@@ -964,4 +1148,19 @@ SPOOL OFF</code></pre>
       cb();
     } catch (e) { /* clipboard unavailable, silently ignore */ }
   }
+
+  (function () {
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+    function toggle() {
+      if (window.scrollY > 480) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    }
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
 </script>
