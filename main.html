@@ -109,11 +109,13 @@
     white-space: nowrap;
   }
   .btn-primary {
-    background: var(--ink);
-    color: #fff;
-    box-shadow: 0 10px 24px -12px rgba(23, 24, 28, 0.55);
+    background: linear-gradient(135deg, rgba(178,150,235,0.35), rgba(110,175,235,0.35));
+    backdrop-filter: blur(8px);
+    color: #3d2f7a;
+    border: 1.5px solid rgba(106, 82, 179, 0.3);
+    transition: transform 0.15s ease, border-color 0.15s ease;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -12px rgba(23, 24, 28, 0.6); }
+  .btn-primary:hover { border-color: var(--accent); transform: translateY(-2px); }
   .btn-outline {
     background: rgba(255, 255, 255, 0.6);
     color: var(--ink);
@@ -166,7 +168,8 @@
 
       <div class="actions">
         <a class="btn btn-primary" href="drp-db-config-framework.html">DRP-DB 형상관리 프레임워크 <span class="arrow">→</span></a>
-        <a class="btn btn-outline" href="claude-code-setup.html">클로드코드 환경구성 <span class="arrow">→</span></a>
+        <a class="btn btn-primary" href="claude-code-setup.html">클로드코드 환경구성 <span class="arrow">→</span></a>
+        <a class="btn btn-primary" href="rfid-process-automation-report.html">반복수작업 자동화 사례 <span class="arrow">→</span></a>
       </div>
     </div>
   </main>
